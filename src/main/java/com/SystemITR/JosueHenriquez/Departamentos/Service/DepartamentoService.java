@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class DepartamentoService {
@@ -28,7 +31,7 @@ public class DepartamentoService {
             return convertirDTO(entitySave);
         } catch (Exception e) {
             log.error("Error al guardar la información del departamento: " + e.getMessage());
-            throw new RuntimeException("Error al registrar el departamento: " + e.getMessage());
+            return null;
         }
     }
 
@@ -48,5 +51,10 @@ public class DepartamentoService {
         objDTO.setAbreviacion(entity.getAbreviacion());
         objDTO.setUbicacion(entity.getUbicacion());
         return objDTO;
+    }
+
+    public List<DepartamentosDTO> obtenerTodo() {
+        List<DepartamentosEntity> data = repo.findAll();
+        return data.stream().map(this::convertirDTO).collect(Collectors.toList());
     }
 }
