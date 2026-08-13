@@ -1,15 +1,13 @@
-package com.SystemITR.JosueHenriquez.Departamentos.Controller;
+package com.SystemITR.JosueHenriquez.departamentos.Controller;
 
-import com.SystemITR.JosueHenriquez.Departamentos.DTO.DepartamentosDTO;
-import com.SystemITR.JosueHenriquez.Departamentos.Entity.DepartamentosEntity;
-import com.SystemITR.JosueHenriquez.Departamentos.Service.DepartamentoService;
+import com.SystemITR.JosueHenriquez.departamentos.DTO.DepartamentosDTO;
+import com.SystemITR.JosueHenriquez.departamentos.Service.DepartamentoService;
 import com.SystemITR.JosueHenriquez.Response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tools.jackson.core.exc.StreamWriteException;
 
 import java.util.List;
 
@@ -99,9 +97,9 @@ public class DepartamentosController {
         try {
             boolean respuesta = service.eliminarData(id);
             if (respuesta) {
-                log.info("Departamento con ID: " +id + "eliminado.");
-                ApiResponse<Void> respuestaExitosa = new ApiResponse<>(true,"Departamento con ID: " +id + "eliminado.");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuestaExitosa);
+                log.info("Departamento con ID: " + id + " eliminado.");
+                ApiResponse<Void> respuestaExitosa = new ApiResponse<>(true, "Departamento con ID: " + id + " eliminado.");
+                return ResponseEntity.ok(respuestaExitosa);
             }
 
             log.info("Departamento con ID: " + id);
@@ -118,7 +116,7 @@ public class DepartamentosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<DepartamentosDTO>> actualizarData(@PathVariable Long id,@Valid @RequestBody DepartamentosDTO dto) {
+    public ResponseEntity<ApiResponse<DepartamentosDTO>> actualizarData(@PathVariable Long id, @Valid @RequestBody DepartamentosDTO dto) {
         try {
             DepartamentosDTO data = service.actualizar(id,dto);
             if (data != null) {
@@ -152,13 +150,13 @@ public class DepartamentosController {
             }
 
             log.warn("Datos no encontrados con la abreviatura: " + abreviatura);
-            ApiResponse<DepartamentosDTO> respuesta = new ApiResponse<>(false,"Datos no encontrados con ID: " + abreviatura);
+            ApiResponse<DepartamentosDTO> respuesta = new ApiResponse<>(false, "Datos no encontrados con la abreviatura: " + abreviatura);
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(respuesta);
         } catch (Exception e) {
-            log.error("Error crítico al eliminar el registro con la abreviatura: " + abreviatura);
+            log.error("Error crítico al buscar el registro con la abreviatura: " + abreviatura);
             e.printStackTrace();
-            ApiResponse<DepartamentosDTO> respuestaError = new ApiResponse<>(false,"Error crítico al eliminar el registro con la abreviatura: " + abreviatura);
+            ApiResponse<DepartamentosDTO> respuestaError = new ApiResponse<>(false, "Error crítico al buscar el registro con la abreviatura: " + abreviatura);
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuestaError);
         }

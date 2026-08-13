@@ -1,6 +1,6 @@
-package com.SystemITR.JosueHenriquez.Departamentos.Repository;
+package com.SystemITR.JosueHenriquez.departamentos.Repository;
 
-import com.SystemITR.JosueHenriquez.Departamentos.Entity.DepartamentosEntity;
+import com.SystemITR.JosueHenriquez.departamentos.Entity.DepartamentosEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

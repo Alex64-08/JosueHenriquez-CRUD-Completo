@@ -1,8 +1,8 @@
-package com.SystemITR.JosueHenriquez.Departamentos.Service;
+package com.SystemITR.JosueHenriquez.departamentos.Service;
 
-import com.SystemITR.JosueHenriquez.Departamentos.DTO.DepartamentosDTO;
-import com.SystemITR.JosueHenriquez.Departamentos.Entity.DepartamentosEntity;
-import com.SystemITR.JosueHenriquez.Departamentos.Repository.DepartamentosRepository;
+import com.SystemITR.JosueHenriquez.departamentos.DTO.DepartamentosDTO;
+import com.SystemITR.JosueHenriquez.departamentos.Entity.DepartamentosEntity;
+import com.SystemITR.JosueHenriquez.departamentos.Repository.DepartamentosRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,6 +48,7 @@ public class DepartamentoService {
     private DepartamentosDTO convertirDTO(@Valid DepartamentosEntity entity) {
 
         DepartamentosDTO objDTO = new DepartamentosDTO();
+        objDTO.setId(entity.getId());
         objDTO.setNombreDepto(entity.getNombreDepto());
         objDTO.setAbreviacion(entity.getAbreviacion());
         objDTO.setUbicacion(entity.getUbicacion());

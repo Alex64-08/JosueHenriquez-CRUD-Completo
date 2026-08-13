@@ -1,4 +1,4 @@
-package com.SystemITR.JosueHenriquez.Departamentos.DTO;
+package com.SystemITR.JosueHenriquez.departamentos.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 

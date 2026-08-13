@@ -1,8 +1,12 @@
-package com.SystemITR.JosueHenriquez.Departamentos.Entity;
+package com.SystemITR.JosueHenriquez.departamentos.Entity;
 
+import com.SystemITR.JosueHenriquez.empleados.DTO.EmpleadosDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity @Getter
 @Setter @Table(name = "TBDEPARTAMENTOS")
@@ -18,4 +22,7 @@ public class DepartamentosEntity {
     private String abreviacion;
     @Column(name = "UBICACION")
     private String ubicacion;
+
+    @OneToMany(mappedBy = "")
+    private List<EmpleadosDTO> listaEmpleados =  new ArrayList<>();
 }
